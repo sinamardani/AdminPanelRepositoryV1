@@ -46,11 +46,16 @@ $AdminPanel-theme: mat.define-light-theme(
 @include nb-install() {
   @include nb-theme-global();
 }
+
+@import "fonts.scss";
+
 html,
 body {
   height: 100%;
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+  --font-family-primary: "Vazir" !important;
+  font-family: "Vazir" !important;
 }
