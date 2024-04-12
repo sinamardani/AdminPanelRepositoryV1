@@ -5,16 +5,16 @@ import {
   NbSidebarModule,
   NbSidebarService,
 } from '@nebular/theme';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-one-column',
   standalone: true,
   providers: [NbSidebarService],
-  imports: [NbLayoutModule, NbSidebarModule, NbInputModule],
   template: `
     <nb-layout windowMode>
       <nb-layout-header fixed>
-        <!-- <app-header></app-header> -->
+        <app-header></app-header>
       </nb-layout-header>
 
       <nb-sidebar right class="menu-sidebar" tag="menu-sidebar" responsive>
@@ -31,5 +31,6 @@ import {
     </nb-layout>
   `,
   styleUrl: './one-column.component.scss',
+  imports: [NbLayoutModule, NbSidebarModule, NbInputModule, HeaderComponent],
 })
 export class OneColumnComponent {}
