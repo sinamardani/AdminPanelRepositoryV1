@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
 import { OneColumnComponent } from './@theme/layouts/one-column/one-column.component';
+import { PagesComponent } from './pages/pages.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'pages',
     pathMatch: 'full',
   },
   {
-    path: 'main',
-    component: OneColumnComponent,
+    path: 'pages',
+    component: PagesComponent,
   },
+  
 ];
