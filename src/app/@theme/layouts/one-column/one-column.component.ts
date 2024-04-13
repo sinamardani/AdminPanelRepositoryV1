@@ -2,10 +2,14 @@ import { Component } from '@angular/core';
 import {
   NbInputModule,
   NbLayoutModule,
+  NbMenuComponent,
+  NbMenuModule,
   NbSidebarModule,
   NbSidebarService,
 } from '@nebular/theme';
 import { HeaderComponent } from '../../components/header/header.component';
+import { MENU_ITEMS } from '../../../pages/pages-menu';
+import { PagesComponent } from '../../../pages/pages.component';
 
 @Component({
   selector: 'app-one-column',
@@ -31,6 +35,13 @@ import { HeaderComponent } from '../../components/header/header.component';
     </nb-layout>
   `,
   styleUrl: './one-column.component.scss',
-  imports: [NbLayoutModule, NbSidebarModule, NbInputModule, HeaderComponent],
+  imports: [
+    NbLayoutModule,
+    NbSidebarModule,
+    NbInputModule,
+    HeaderComponent,
+    NbMenuModule,
+    PagesComponent,
+  ],
 })
 export class OneColumnComponent {}
