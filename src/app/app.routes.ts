@@ -10,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'pages',
-    component: PagesComponent,
+    loadChildren: () =>
+      import('./pages/pages.routes').then((m) => m.routes),
   },
-  
 ];

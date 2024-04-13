@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { TestComponent } from './test/test.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
@@ -20,8 +20,3 @@ const routes: Routes = [
     ],
   },
 ];
-// @NgModule({
-//   imports: [RouterModule.forChild(routes)],
-//   exports: [RouterModule],
-// })
-export class PagesRoutingModule {}
