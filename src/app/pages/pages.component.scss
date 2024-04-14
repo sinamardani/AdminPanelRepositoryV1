@@ -1,5 +1,10 @@
 @import "../@theme/styles/themes";
 
+nb-menu {
+  direction: rtl;
+  text-align: right;
+}
+
 @include nb-install-component() {
   ::ng-deep router-outlet + * {
     display: block;
