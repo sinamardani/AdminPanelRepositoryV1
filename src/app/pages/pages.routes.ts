@@ -12,6 +12,11 @@ export const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
+      {
+        path: 'survey',
+        loadChildren: () =>
+          import('./survey/survey.routes').then((m) => m.routes),
+      },
     ],
   },
 ];

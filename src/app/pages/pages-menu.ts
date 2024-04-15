@@ -22,11 +22,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'طراحی',
-        link: '/pages/layout/stepper',
+        link: '/pages',
       },
       {
         title: 'قالب نمایش',
-        link: '/pages/layout/list',
+        link: '/pages/survey/viewsurvey',
       },
     ],
   },
