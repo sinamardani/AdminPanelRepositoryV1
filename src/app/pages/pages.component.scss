@@ -3,6 +3,8 @@
 nb-menu {
   direction: rtl;
   text-align: right;
+  --menu-text-font-size: 1rem !important;
+  --menu-item-icon-width: 1.3rem !important;
 }
 
 @include nb-install-component() {
