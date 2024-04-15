@@ -25,7 +25,7 @@ import { PagesComponent } from '../../../pages/pages.component';
         <ng-content select="nb-menu"></ng-content>
       </nb-sidebar>
 
-      <nb-layout-column>
+      <nb-layout-column style="text-align: right;">
         <ng-content select="router-outlet"></ng-content>
       </nb-layout-column>
 
