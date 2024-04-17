@@ -4,6 +4,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'صفحه‌اصلی',
     icon: 'home',
+    // icon: {
+    //   icon: 'house',
+    //   pack: 'font-awesome',
+    // },
     link: '/pages',
     home: true,
   },
@@ -18,7 +22,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'نظرسنجی',
-    icon: 'book-open',
+    icon: {
+      icon: 'rectangle-list',
+      pack: 'font-awesome',
+    },
     children: [
       {
         title: 'طراحی',
