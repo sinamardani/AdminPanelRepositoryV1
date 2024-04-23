@@ -1,0 +1,172 @@
+<!-- <form [formGroup]="form">
+  <nb-card size="medium">
+    <nb-card-body>
+      <nb-stepper orientation="vertical" [linear]="true">
+        <nb-step label="مرحله اول">
+          <h4>مقدمات</h4>
+          <button nbButton disabled nbStepperNext>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </nb-step>
+        <nb-step
+          [stepControl]="form.get(getLevel(Li))"
+          *ngFor="let item of formStructure; let Li = index"
+          [label]="item.levelLabel"
+        >
+          <div [formArrayName]="getLevel(Li)">
+            <div *ngFor="let ctrl of item.levelFormData; let Ci = index">
+              <div
+                *ngIf="ctrl.kind === 'input'"
+                style="width: 100%; margin: 20px 0"
+              >
+                <label>{{ ctrl.label }}</label>
+                <input
+                  [type]="ctrl.type"
+                  nbInput
+                  fullWidth
+                  [formControlName]="Ci"
+                  maxlength="{{
+                    getValidationData(ctrl.validations, 'maxLength')
+                  }}"
+                  minlength="{{
+                    getValidationData(ctrl.validations, 'minLength')
+                  }}"
+                  pattern="{{ getValidationData(ctrl.validations, 'pattern') }}"
+                  min="{{ getValidationData(ctrl.validations, 'min') }}"
+                  max="{{ getValidationData(ctrl.validations, 'max') }}"
+                />
+                <span> {{ getErrorMessage(Li, Ci, ctrl.validations) }}</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button nbButton nbStepperNext>بعدی</button>
+            <button nbButton nbStepperPrevious>قبلی</button>
+          </div>
+        </nb-step>
+      </nb-stepper>
+    </nb-card-body>
+  </nb-card>
+</form> -->
+
+<form [formGroup]="form" dir="rtl">
+  <mat-stepper orientation="vertical" [linear]="true">
+    <mat-step>
+      <ng-template matStepLabel>مقدمات</ng-template>
+
+      <div>
+        <button mat-button matStepperNext>بعدی</button>
+      </div>
+    </mat-step>
+    <mat-step
+      [stepControl]="form.get(getLevel(Li))"
+      *ngFor="let item of formStructure; let Li = index"
+    >
+      <ng-template matStepLabel>{{ item.levelLabel }}</ng-template>
+      <div [formArrayName]="getLevel(Li)">
+        <div *ngFor="let ctrl of item.levelFormData; let Ci = index">
+          <!-- I N P U T -->
+          <mat-form-field
+            appearance="outline"
+            *ngIf="ctrl.kind === 'input'"
+            style="width: 100%; margin: 10px 0"
+          >
+            <mat-label>{{ ctrl.label }}</mat-label>
+            <span *ngIf="ctrl.type === 'tel'" matTextSuffix> &nbsp;98+ </span>
+            <input
+              [type]="ctrl.type"
+              matInput
+              [formControlName]="Ci"
+              [placeholder]="ctrl.placeHolder"
+              maxlength="{{ getValidationData(ctrl.validations, 'maxLength') }}"
+              minlength="{{ getValidationData(ctrl.validations, 'minLength') }}"
+              pattern="{{ getValidationData(ctrl.validations, 'pattern') }}"
+              min="{{ getValidationData(ctrl.validations, 'min') }}"
+              max="{{ getValidationData(ctrl.validations, 'max') }}"
+            />
+            <mat-error>
+              {{ getErrorMessage(Li, Ci, ctrl.validations) }}
+            </mat-error>
+          </mat-form-field>
+          <!-- S E L E C T -->
+          <mat-form-field
+            appearance="outline"
+            *ngIf="ctrl.kind === 'other' && ctrl.type === 'select'"
+            style="width: 100%; margin: 10px 0"
+          >
+            <mat-label>{{ ctrl.label }}</mat-label>
+            <mat-select [formControlName]="Ci">
+              <mat-option
+                *ngFor="let option of ctrl.options; let optionKey = index"
+                [value]="optionKey"
+                >{{ option }}</mat-option
+              >
+            </mat-select>
+            <mat-error>
+              {{ getErrorMessage(Li, Ci) }}
+            </mat-error>
+          </mat-form-field>
+          <!-- M U L T I S E L E C T -->
+          <mat-form-field
+            appearance="outline"
+            *ngIf="ctrl.kind === 'other' && ctrl.type === 'multiSelect'"
+            style="width: 100%; margin: 10px 0"
+          >
+            <mat-label>{{ ctrl.label }}</mat-label>
+            <mat-select
+              [formControlName]="Ci"
+              maxlength="{{ getValidationData(ctrl.validations, 'maxLength') }}"
+              minlength="{{ getValidationData(ctrl.validations, 'minLength') }}"
+              multiple
+            >
+              <mat-option
+                *ngFor="let option of ctrl.options; let optionKey = index"
+                [value]="optionKey"
+                >{{ option }}</mat-option
+              >
+            </mat-select>
+            <mat-error>
+              {{ getErrorMessage(Li, Ci) }}
+            </mat-error>
+          </mat-form-field>
+          <!-- C H E C K B O X -->
+          <section
+            class="example-section"
+            *ngIf="ctrl.kind === 'other' && ctrl.type === 'checkbox'"
+          >
+            <h4>{{ ctrl.label }}</h4>
+            <div class="wrapper">
+              <div *ngFor="let option of ctrl.options">
+                <mat-checkbox [formControlName]="Ci">{{ option }}</mat-checkbox>
+              </div>
+            </div>
+            <mat-error>
+              {{ getErrorMessage(Li, Ci) }}
+            </mat-error>
+          </section>
+          <!-- R A D I O B U T T O N -->
+          <mat-radio-group
+            *ngIf="ctrl.kind === 'other' && ctrl.type === 'radio'"
+            class="example-radio-group"
+          >
+            <h4>{{ ctrl.label }}</h4>
+            <div class="wrapper">
+              <mat-radio-button
+                *ngFor="let option of ctrl.options; let optionKey = index"
+                class="example-radio-button"
+                [value]="optionKey"
+                >{{ option }}</mat-radio-button
+              >
+            </div>
+            <mat-error>
+              {{ getErrorMessage(Li, Ci) }}
+            </mat-error>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperNext>بعدی</button>
+        <button mat-button matStepperPrevious>قبلی</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</form>
